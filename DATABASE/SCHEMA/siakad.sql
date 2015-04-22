@@ -11,6 +11,37 @@ USE `siakad`;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+DROP TABLE IF EXISTS `fakultas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fakultas` (
+  `ID_Fakultas` int(11) NOT NULL,
+  `Nama_Fakultas` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`ID_Fakultas`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `fakultas` WRITE;
+/*!40000 ALTER TABLE `fakultas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `fakultas` ENABLE KEYS */;
+UNLOCK TABLES;
+DROP TABLE IF EXISTS `jurusan`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `jurusan` (
+  `ID_Jurusan` int(11) NOT NULL,
+  `Fakultas_ID` int(11) DEFAULT NULL,
+  `Nama_Jurusan` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`ID_Jurusan`),
+  KEY `fk_fakultas_idx` (`Fakultas_ID`),
+  CONSTRAINT `fk_fakultas` FOREIGN KEY (`Fakultas_ID`) REFERENCES `fakultas` (`ID_Fakultas`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `jurusan` WRITE;
+/*!40000 ALTER TABLE `jurusan` DISABLE KEYS */;
+/*!40000 ALTER TABLE `jurusan` ENABLE KEYS */;
+UNLOCK TABLES;
 DROP TABLE IF EXISTS `mahasiswa`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
